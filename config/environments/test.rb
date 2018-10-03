@@ -15,9 +15,9 @@ Rails.application.configure do
   config.active_support.deprecation = :stderr
   config.cache_store = :null_store
 
-  config.lead_api_paccname = 'test_paccname'
-  config.lead_api_pguid = 'c5b88f56-00e8-11e8-ba89-0ed5f89f718b'
-  config.lead_api_ppartner = 'test_ppartner'
-  config.lead_api_access_token = 'test_access_token'
-  config.lead_api_base_uri = 'http://test_lead_api/api/v1'
+  config.lead_api_paccname = ENV['LEAD_API_PACCNAME']
+  config.lead_api_pguid = ENV['LEAD_API_PGUID']
+  config.lead_api_ppartner = ENV['LEAD_API_PPARTNER']
+  config.lead_api_access_token = ENV['LEAD_API_ACCESS_TOKEN']
+  config.lead_api_base_uri = ENV['LEAD_API_URI']
 end
