@@ -1,0 +1,39 @@
+<div class="py-5 text-center">
+  <h2>Make It Cheaper</h2>
+  <p class="lead">Lorem Ipsum.</p>
+</div>
+
+<%= form_for @lead do |f| %>
+
+
+<% if @lead&.errors&.any? %>
+  <div class="alert alert-danger" role="alert">
+    <h4>
+      <%= pluralize(@lead.errors.count, "error") %> :
+    </h4>
+    <ul>
+      <% @lead.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+
+
+
+  <div class="row">
+    <div class="col-md-6 mb-3">
+      <%= f.label :first_name %>
+      <%= f.text_field :first_name, class: 'form-control' %>
+    </div>
+    <div class="col-md-6 mb-3">
+      <%= f.label :last_name %>
+      <%= f.text_field :last_name, class: 'form-control' %>
+    </div>
+  </div>
+
+  <hr class="mb-4">
+
+  <%= f.submit 'Request Callback', class: 'btn btn-primary btn-lg btn-block' %>
+<% end %>
