@@ -34,9 +34,22 @@ describe 'leads' do
       expect(response).to have_http_status(200)
     end
 
-    it 'shows errors' do
-      subject
-      expect(response.body).to match(CGI.escapeHTML("Last name can't be blank"))
+    context 'lead is valid and is sent to the API' do
+      before do
+        allow(Leads::LeadApi).to receive(:send_lead).and_return(true)
+      end
+
+      it 'redirect to leads_path' do
+        subject
+        expect(response).to redirect_to(leads_path)
+      end
+    end
+
+    context 'lead is not valid' do
+      it 'shows errors' do
+        subject
+        expect(response.body).to match(CGI.escapeHTML("Last name can't be blank"))
+      end
     end
   end
 end

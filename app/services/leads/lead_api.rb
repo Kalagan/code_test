@@ -4,6 +4,10 @@ module Leads
     ENDPOINT_URL = Rails.application.config.lead_api_base_uri + '/api/v1/create'
     USER_ERROR_MESSAGE = 'An error occured'.freeze
 
+    def self.send_lead(lead)
+      new(lead).send_lead
+    end
+
     attr_reader :lead
 
     def initialize(lead)
@@ -11,17 +15,19 @@ module Leads
     end
 
     def send_lead
-      return lead unless lead.valid?
+      return false unless lead.valid?
 
       post
-      lead
     end
 
     private
 
     def post
+      Rails.logger.info("Sending Lead to API: #{lead_params}")
       result = HTTParty.post(ENDPOINT_URL, request_params)
       raise RequestError, result unless result.success?
+
+      true
     rescue HTTParty::Error => error
       capture_error(error)
     rescue RequestError => error
@@ -37,7 +43,10 @@ module Leads
         name: lead.name,
         business_name: lead.business_name,
         telephone_number: lead.telephone_number,
-        email: lead.email
+        email: lead.email,
+        contact_time: lead.contact_time,
+        reference: lead.reference,
+        notes: lead.notes
       }
     end
 
@@ -53,6 +62,7 @@ module Leads
     def capture_error(error)
       ErrorCapturer.capture(error)
       lead.errors.add(:base, USER_ERROR_MESSAGE)
+      false
     end
   end
 end

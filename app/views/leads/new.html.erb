@@ -5,35 +5,64 @@
 
 <%= form_for @lead do |f| %>
 
-
-<% if @lead&.errors&.any? %>
-  <div class="alert alert-danger" role="alert">
-    <h4>
-      <%= pluralize(@lead.errors.count, "error") %> :
-    </h4>
-    <ul>
-      <% @lead.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-    </ul>
-  </div>
-<% end %>
-
-
-
+  <% if @lead.errors&.any? %>
+    <div class="alert alert-danger" role="alert">
+      <h4>
+        <%= pluralize(@lead.errors.count, "error") %> :
+      </h4>
+      <ul>
+        <% @lead.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
 
   <div class="row">
     <div class="col-md-6 mb-3">
       <%= f.label :first_name %>
-      <%= f.text_field :first_name, class: 'form-control' %>
+      <%= f.text_field :first_name, class: 'form-control', required: true %>
     </div>
     <div class="col-md-6 mb-3">
       <%= f.label :last_name %>
-      <%= f.text_field :last_name, class: 'form-control' %>
+      <%= f.text_field :last_name, class: 'form-control', required: true %>
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <%= f.label :business_name %>
+    <%= f.text_field :business_name, class: 'form-control', required: true %>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6 mb-3">
+      <%= f.label :telephone_number %>
+      <%= f.text_field :telephone_number, class: 'form-control', required: true %>
+    </div>
+    <div class="col-md-6 mb-3">
+      <%= f.label :email %>
+      <%= f.text_field :email, class: 'form-control', required: true %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6 mb-3">
+      <div class="mb-3">
+        <%= f.label :contact_time %>
+        <%= f.text_field :contact_time, class: 'form-control' %>
+      </div>
+      <div class="mb-3">
+        <%= f.label :reference %>
+        <%= f.text_field :reference, class: 'form-control' %>
+      </div>
+    </div>
+    <div class="col-md-6 mb-3">
+      <%= f.label :notes %>
+      <%= f.text_area :notes, rows: 4, class: 'form-control' %>
     </div>
   </div>
 
   <hr class="mb-4">
 
-  <%= f.submit 'Request Callback', class: 'btn btn-primary btn-lg btn-block' %>
+  <%= f.submit 'Request callback', class: 'btn btn-primary btn-lg btn-block' %>
 <% end %>
