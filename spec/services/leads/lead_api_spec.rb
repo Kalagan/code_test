@@ -39,14 +39,14 @@ RSpec.describe Leads::LeadApi do
         Lead.new(
           first_name: 'john',
           last_name: 'wayne',
-          business_name: 'acme',
-          telephone_number: '07570012345'
+          telephone_number: '07570012345',
+          email: 'example@example.com'
         )
       end
 
       it 'sets an error to the lead' do
         subject.send_lead
-        expect(lead.errors.full_messages).to eq(["Email can't be blank"])
+        expect(lead.errors.full_messages).to eq(["Business name can't be blank"])
       end
 
       it 'returns false' do
