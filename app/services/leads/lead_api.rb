@@ -15,9 +15,7 @@ module Leads
     end
 
     def send_lead
-      return false unless lead.valid?
-
-      post
+      lead.valid? && post
     end
 
     private
