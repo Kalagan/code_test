@@ -18,8 +18,15 @@
   </head>
 
   <body>
+    <div class="container">
+      <br>
+      <% if flash[:notice] %>
+        <div class="card border-primary"><div class="card-body text-primary"><p class="card-text"><%= flash[:notice] %></p></div></div>
+      <% end %>
+      <% flash.clear %>
+      <br>
 
-    <%= yield %>
-
+      <%= yield %>
+    </div>
   </body>
 </html>

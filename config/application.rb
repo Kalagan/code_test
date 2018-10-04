@@ -21,5 +21,7 @@ module MoneySuperMarket
     config.generators.system_tests = nil
 
     config.autoload_paths += %W[#{config.root}/app/services]
+
+    config.active_record.sqlite3.represent_boolean_as_integer = true
   end
 end
