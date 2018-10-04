@@ -10,6 +10,7 @@ class Lead
   validates :email, presence: true, length: { maximum: 80 }, format: { with: URI::MailTo::EMAIL_REGEXP }
   validates :reference, length: { maximum: 50 }
   validates :notes, length: { maximum: 255 }
+  validates_datetime :contact_time, allow_blank: true, on_or_after: :now
 
   def initialize(first_name: nil, last_name: nil, business_name: nil, telephone_number: nil, email: nil, contact_time: nil, reference: nil, notes: nil)
     @first_name = first_name
