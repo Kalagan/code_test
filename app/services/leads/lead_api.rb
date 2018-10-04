@@ -2,7 +2,7 @@ module Leads
   class LeadApi
     RequestError = Class.new(StandardError)
     ENDPOINT_URL = Rails.application.config.lead_api_base_uri + '/api/v1/create'
-    USER_ERROR_MESSAGE = 'An error occured'.freeze
+    USER_ERROR_MESSAGE = 'An error occured. Sorry about that!'.freeze
 
     def self.send_lead(lead)
       new(lead).send_lead

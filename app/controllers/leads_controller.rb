@@ -8,7 +8,7 @@ class LeadsController < ApplicationController
   def create
     @lead = Lead.new(lead_params)
     if @lead.send_lead
-      redirect_to leads_path, notice: 'Lead was successfully created.'
+      redirect_to leads_path, notice: 'Lead was successfully created. We will call you back.'
     else
       render :new
     end
